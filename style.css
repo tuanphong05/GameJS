@@ -16,6 +16,12 @@ body {
   align-items: center;
 }
 
+.header {
+  color: rgb(78, 76, 76);
+  margin: 10px 0;
+  border: 2px solid black;
+}
+
 canvas {
   box-shadow: black 20px 10px 50px;
 }
