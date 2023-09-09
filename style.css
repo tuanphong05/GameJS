@@ -19,6 +19,7 @@ body {
 .header {
   color: rgb(78, 76, 76);
   margin: 10px 0;
+  padding: 5px 5px;
   border: 2px solid black;
 }
 
