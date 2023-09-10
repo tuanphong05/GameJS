@@ -9,6 +9,10 @@ let appleY = 5;
 document.body.addEventListener("keydown", keyDown);
 // Create CanvasRenderingContext 2d
 const ctx = canvas.getContext("2d");
+// array for snake parts
+const snakeParts = [];
+// initial parts of snake
+let tailLength = 2;
 
 function clearScreen() {
   ctx.fillStyle = "black"; //make screen black
@@ -22,6 +26,7 @@ function drawGame() {
   drawSnake();
   drawApple();
   changeSnakePosition();
+  checkCollision();
 }
 
 // Display the snake
@@ -30,9 +35,25 @@ let tileSize = 18;
 let headX = 10;
 let headY = 10;
 
+class snakePart {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
 function drawSnake() {
   ctx.fillStyle = "orange";
   ctx.fillRect(headX * tileCount, headY * tileCount, tileSize, tileSize);
+
+  ctx.fillStyle = "green";
+  //loop through our snakeparts array
+  for (let i = 0; i < snakeParts.length; i++) {
+    // draw snake parts
+    let part = snakeParts[i];
+    ctx.fillRect(part.x * tileCount, part.y * tileCount, tileSize, tileSize);
+  }
+  snakeParts.push(new snakePart(headX, headY)); //push item at the end of list next to the head
 }
 
 // Display apple
@@ -76,6 +97,15 @@ function keyDown(event) {
 function changeSnakePosition() {
   headX = headX + xvelocity;
   headY = headY + yvelocity;
+}
+
+// Check collision
+function checkCollision() {
+  if (appleX == headX && appleY == headY) {
+    //Collision happens when snake collide apple
+    appleX = Math.floor(Math.random() * tileCount); //Generate apple to a random horizontal position
+    appleY = Math.floor(Math.random() * tileCount); //Generate apple to a random vertical position
+  }
 }
 
 drawGame();
