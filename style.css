@@ -27,6 +27,7 @@ body {
   justify-content: center;
   position: relative;
   display: flex;
+  background-color: rgb(218, 237, 41);
 }
 
 .gameBox {
