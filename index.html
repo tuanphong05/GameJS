@@ -15,17 +15,58 @@
   </head>
   <body>
     <div class="mainBox">
-      <div class="header">Snake Game</div>
-      <div class="gameBox">
-        <div class="menu">
-          <p class="txt-menu">Start</p>
-          <p class="txt-menu">Options</p>
-          <p class="txt-menu">Highscores</p>
+      <div class="replay-box hidden">
+        <p class="replay-title">Ouch! Watch out</p>
+        <div class="replay-btn-box">
+          <button class="replay-btn">Replay</button>
+          <button class="exit-btn">Exit</button>
         </div>
       </div>
+
+      <div class="select-levels-menu hidden">
+        <button class="back-btn">
+          <img src="arrow.svg" alt="Back Button" />
+        </button>
+        <p class="select-levels-title">Select levels</p>
+        <p></p>
+        <div class="easy-level">
+          <button class="easy-title">Easy</button>
+          <div class="box-banana">
+            <img class="banana-svg-sm" src="banana.svg" />
+          </div>
+        </div>
+        <div class="medium-level">
+          <button class="medium-title">Medidum</button>
+          <div class="box-banana-2">
+            <img class="banana-svg-sm" src="banana.svg" />
+            <img class="banana-svg-sm" src="banana.svg" />
+          </div>
+        </div>
+        <div class="hard-level">
+          <button class="hard-title">Hard</button>
+          <div class="box-banana-3">
+            <img class="banana-svg-sm" src="banana.svg" />
+            <img class="banana-svg-sm" src="banana.svg" />
+            <img class="banana-svg-sm" src="banana.svg" />
+          </div>
+        </div>
+      </div>
+
+      <div class="header">Snake Game</div>
+
+      <div class="gameBox">
+        <div class="menu">
+          <img class="banana-svg hidden" src="banana.svg" />
+          <button class="start-btn">Start</button>
+          <button class="levels-btn">Levels</button>
+          <button class="highScores-btn">Highscores</button>
+        </div>
+      </div>
+
       <div class="featuresBox">
         <div class="scoreDisplay">Score Display</div>
-        <div class="score">22</div>
+        <div class="score">0</div>
+
         <div class="controlKeyboard">
           <div class="top">
             <img src="arrow.svg" class="top-btn" alt="Top Button" />
