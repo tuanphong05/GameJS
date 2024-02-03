@@ -18,7 +18,7 @@ const rightBtn = document.querySelector(".right");
 const topBtn = document.querySelector(".top");
 const bottomBtn = document.querySelector(".bottom");
 let direction = 1;
-let timeLevel;
+let timeLevel = 1000;
 let intervalTime = [300, 500, 1000];
 let interval = 0;
 let currentSnake = [2, 1, 0];
