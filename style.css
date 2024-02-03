@@ -18,7 +18,7 @@ body {
   align-items: center;
 }
 
-/* Boxes */
+/**______ Boxes ______**/
 .mainBox {
   width: 30rem;
   height: 45rem;
@@ -31,15 +31,26 @@ body {
 }
 
 .gameBox {
-  width: 15rem;
-  height: 28rem;
+  /* width: 15rem; */
+  width: 403px;
+  /* height: 28rem; */
+  height: 403px;
+  margin: 0 auto;
   border: solid black 0.1rem;
   border-radius: 0.75rem;
   position: absolute;
   top: 4rem;
-  left: 7rem;
-  justify-content: center;
+  left: 2.5rem;
   background-color: rgba(39, 55, 69, 255);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gameBox div {
+  width: 40px;
+  height: 40px;
+  /* border: solid 1px black; */
+  box-sizing: border-box;
 }
 
 .featuresBox {
@@ -58,10 +69,87 @@ body {
   top: 0rem;
 }
 
-/* Title */
+/**________ Replay box ________**/
+.replay-box {
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  transform: translateX(-50%);
+  background-color: rgba(216, 199, 0, 255);
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  width: 10rem !important;
+  height: 5rem !important;
+  z-index: 1;
+}
+
+.replay-btn-box {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/**__________ Select levels menu __________**/
+.select-levels-menu {
+  z-index: 1;
+  width: 200px;
+  height: 200px;
+  margin: 0;
+  padding: 0;
+  top: 20%;
+  left: 10%;
+  /* transform: translateY(-40%); */
+  position: relative;
+}
+
+/**__________ Easy level __________**/
+.easy-level {
+  margin-top: 1.5rem;
+  width: 5rem;
+  height: 2rem;
+}
+
+/**__________ Medium level __________**/
+.medium-level {
+  margin-top: 1.5rem;
+  width: 9.5rem;
+  height: 2rem;
+}
+
+/**__________ Hard level __________**/
+.hard-level {
+  margin-top: 1.5rem;
+  width: 9rem;
+  height: 2rem;
+}
+
+/**__________ Box banana __________**/
+.box-banana {
+  position: absolute;
+  left: 25%;
+  top: 38%;
+}
+
+.box-banana-2 {
+  position: absolute;
+  left: 44%;
+  top: 66%;
+}
+
+.box-banana-3 {
+  position: absolute;
+  left: 28%;
+  top: 94%;
+}
+
+/**______ Title ______**/
 .header {
   text-align: center;
   margin-top: 1rem;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
   font-size: large;
   color: rgba(43, 110, 161, 255);
   font-style: italic;
@@ -69,27 +157,82 @@ body {
   font-size: 1.75rem;
 }
 
-/* Features*/
-/* Score */
+/**__________ Replay title __________**/
+.replay-title {
+  width: 8rem;
+  color: rgba(43, 110, 161, 255);
+  font-weight: 1000;
+  margin-top: 0.5rem;
+  margin-left: 1.25rem;
+  font-size: 1.05rem;
+}
+
+.select-levels-title {
+  font-size: 1.25rem;
+  color: rgba(43, 110, 161, 255);
+  font-weight: 1000;
+}
+
+.easy-title {
+  font-size: 1rem;
+  color: rgba(43, 110, 161, 255);
+  background: none;
+  border: none;
+  font-weight: 1000;
+  display: inline-block;
+  margin-right: 0.25rem;
+  padding-top: 0.25rem;
+  padding-left: 0.5rem;
+  cursor: pointer;
+}
+
+.medium-title {
+  font-size: 1rem;
+  color: rgba(43, 110, 161, 255);
+  background: none;
+  border: none;
+  font-weight: 1000;
+  display: inline-block;
+  margin-right: 0.25rem;
+  padding-top: 0.25rem;
+  padding-left: 0.5rem;
+  cursor: pointer;
+}
+
+.hard-title {
+  font-size: 1rem;
+  color: rgba(43, 110, 161, 255);
+  background: none;
+  border: none;
+  font-weight: 1000;
+  display: inline-block;
+  margin-right: 0.25rem;
+  padding-top: 0.25rem;
+  padding-left: 0.5rem;
+  cursor: pointer;
+}
+
+/**______ Features ______**/
+/**________ Score ________**/
 .scoreDisplay {
   position: absolute;
   top: 0.5rem;
   right: 0%;
   color: rgba(43, 110, 161, 255);
   font-weight: 1000;
-  font-size: 1.05rem;
+  font-size: 1.25rem;
 }
 
 .score {
   position: absolute;
   top: 1.75rem;
-  right: 2%;
+  right: 10%;
   font-size: 3.5rem;
   font-family: "DotGothic16", sans-serif;
   letter-spacing: 0.5rem;
 }
 
-/* Control button */
+/**________ Control button ________**/
 .top {
   width: 3rem;
   height: 3rem;
@@ -141,6 +284,8 @@ body {
   top: 50%;
   transform: translateY(-50%);
   background-color: rgba(39, 55, 69, 255);
+  /* animation-name: move-btn;
+  animation-duration: 1s; */
 }
 
 .left-btn {
@@ -171,19 +316,241 @@ body {
   fill: rgba(67, 110, 142, 255);
 }
 
-/** Menu **/
-.menu {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 70%;
+/**________ Back button ________**/
+.back-btn {
+  position: relative;
+  display: block;
+  background: none;
+  border: none;
+  top: -32%;
+  left: -65%;
+  rotate: 180deg;
+  fill: rgba(67, 110, 142, 255);
+  background-color: rgba(39, 55, 69, 255);
+  cursor: pointer;
 }
 
-.txt-menu {
-  text-align: center;
+/**________ Banana level ________**/
+.banana-svg-sm {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/**__________ Animation __________**/
+
+/**____________ Start button ____________**/
+
+.start-btn {
+  transition: 1s;
+}
+
+.start-btn::before {
+  background: rgba(216, 199, 0, 255);
+  transition: 1s;
+  transform: scale(0.9);
+  z-index: -1;
+}
+
+.start-btn:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(216, 199, 0, 255);
+}
+
+.start-btn:hover {
+  color: rgba(216, 199, 0, 255);
+  box-shadow: 0 0 5px rgba(216, 199, 0, 255);
+  text-shadow: 0 0 5px rgba(216, 199, 0, 255);
+}
+
+/**____________ Options button ____________**/
+
+.levels-btn {
+  transition: 1s;
+}
+
+.levels-btn::before {
+  background: rgba(216, 199, 0, 255);
+  transition: 1s;
+  transform: scale(0.9);
+  z-index: -1;
+}
+
+.levels-btn:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(216, 199, 0, 255);
+}
+
+.levels-btn:hover {
+  color: rgba(216, 199, 0, 255);
+  box-shadow: 0 0 5px rgba(216, 199, 0, 255);
+  text-shadow: 0 0 5px rgba(216, 199, 0, 255);
+}
+
+/**____________ Highscores button ____________**/
+
+.highScores-btn {
+  transition: 1s;
+}
+
+.highScores-btn::before {
+  background: rgba(216, 199, 0, 255);
+  transition: 1s;
+  transform: scale(0.9);
+  z-index: -1;
+}
+
+.highScores-btn:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(216, 199, 0, 255);
+}
+
+.highScores-btn:hover {
+  color: rgba(216, 199, 0, 255);
+  box-shadow: 0 0 5px rgba(216, 199, 0, 255);
+  text-shadow: 0 0 5px rgba(216, 199, 0, 255);
+}
+
+/**____________ Easy level ____________**/
+.easy-level {
+  transition: 1s;
+}
+
+.easy-level::before {
+  background: rgba(216, 199, 0, 255);
+  transition: 1s;
+  transform: scale(0.9);
+  z-index: -1;
+}
+
+.easy-level:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(216, 199, 0, 255);
+}
+
+.easy-level:hover {
+  color: rgba(216, 199, 0, 255);
+  box-shadow: 0 0 5px rgba(216, 199, 0, 255);
+  /* text-shadow: 0 0 5px rgba(216, 199, 0, 255); */
+}
+
+/**____________ Medium level ____________**/
+.medium-level {
+  transition: 1s;
+}
+
+.medium-level::before {
+  background: rgba(216, 199, 0, 255);
+  transition: 1s;
+  transform: scale(0.9);
+  z-index: -1;
+}
+
+.medium-level:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(216, 199, 0, 255);
+}
+
+.medium-level:hover {
+  color: rgba(216, 199, 0, 255);
+  box-shadow: 0 0 5px rgba(216, 199, 0, 255);
+}
+
+/**____________ Hard level ____________**/
+.hard-level {
+  transition: 1s;
+}
+
+.hard-level::before {
+  background: rgba(216, 199, 0, 255);
+  transition: 1s;
+  transform: scale(0.9);
+  z-index: -1;
+}
+
+.hard-level:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(216, 199, 0, 255);
+}
+
+.hard-level:hover {
+  color: rgba(216, 199, 0, 255);
+  box-shadow: 0 0 5px rgba(216, 199, 0, 255);
+}
+
+/**________ Menu ________**/
+.menu {
+  position: absolute;
+  left: 47%;
+  transform: translateX(-50%);
+  top: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+.start-btn {
   color: rgba(43, 110, 161, 255);
+  width: 4rem;
   font-weight: 1000;
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   margin-top: 0.75rem;
   cursor: pointer;
+  background-color: rgba(39, 55, 69, 255);
+  border: none;
+  display: block;
+}
+
+.levels-btn {
+  color: rgba(43, 110, 161, 255);
+  width: 5.5rem;
+  font-weight: 1000;
+  font-size: 1.25rem;
+  margin-top: 0.75rem;
+  cursor: pointer;
+  background-color: rgba(39, 55, 69, 255);
+  border: none;
+  display: block;
+  position: relative;
+  right: 0.5rem;
+}
+
+.highScores-btn {
+  color: rgba(43, 110, 161, 255);
+  width: 7rem;
+  font-weight: 1000;
+  font-size: 1.25rem;
+  margin-top: 0.75rem;
+  cursor: pointer;
+  background-color: rgba(39, 55, 69, 255);
+  border: none;
+  position: relative;
+  right: 1rem;
+}
+
+/**________ Replay button ________**/
+.replay-btn {
+  margin: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.exit-btn {
+  margin: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+/**______ Objects ______**/
+/**________ The snake ________**/
+.snake {
+  background: blue;
+  border-radius: 0.4rem;
+}
+
+/**________ Banana ________**/
+.hidden {
+  display: none;
 }
