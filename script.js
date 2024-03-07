@@ -4,7 +4,13 @@ const gameMenu = document.querySelector(".menu");
 const selectLevelsMenu = document.querySelector(".select-levels-menu");
 const startBtn = document.querySelector(".start-btn");
 const backBtn = document.querySelector(".back-btn");
+const backBtnHighscore = document.querySelector(".back-btn-highscores");
 const levelsBtn = document.querySelector(".levels-btn");
+const highScoreBtn = document.querySelector(".highScores-btn");
+const highScoreBoard = document.querySelector(".highscore-board");
+const easyTitle = document.querySelector(".easy-title");
+const mediumTitle = document.querySelector(".medium-title");
+const hardTitle = document.querySelector(".hard-title");
 const easyLv = document.querySelector(".easy-level");
 const mediumLv = document.querySelector(".medium-level");
 const hardLv = document.querySelector(".hard-level");
@@ -17,6 +23,7 @@ const leftBtn = document.querySelector(".left");
 const rightBtn = document.querySelector(".right");
 const topBtn = document.querySelector(".top");
 const bottomBtn = document.querySelector(".bottom");
+let scoreArr = [];
 let direction = 1;
 let timeLevel = 1000;
 let intervalTime = [300, 500, 1000];
@@ -31,7 +38,9 @@ let width = 10;
 /* Start function */
 /* Change color background, display snake, when user click on the arrow button by mouse or keyboard then the snake moves. The banana will display random, each times the snake eat banana therefore user will get 1 point and the length of the snake will increase, the movement becomes faster. The user is losed when snake collaspes itself or four walls of the box.
 Snake is being invisible when eat the cloak, return to normal after 5 seconds.
-Faster shoes makes the snake go faster than usual speed */
+Faster shoes makes the snake go faster than usual speed
+Get the score, compare the score with the previous one, add new highscore and show list of 5 top highscore including names
+*/
 
 /**
  * Change color background
@@ -67,6 +76,52 @@ const removeBoard = function () {
 };
 
 /**
+ * Get and store score
+ */
+const getScore = function () {
+  const newScore = getFromStorage("score") || [];
+  scoreArr.push(newScore);
+  /* If length of scoreArr is greater than 5, set the length to 5 to make the list 5 score */
+  if (scoreArr.length > 5) {
+    /* Loop through scoreArr and compare newScore with the score in scoreArr, if newScore is greater than the score then replace it */
+    for (i in scoreArr) {
+      if (newScore > scoreArr[i]) {
+        scoreArr.splice(i, 1, newScore);
+      }
+      /* Break the loop when meets the condition */
+      break;
+    }
+    scoreArr.length = 5;
+  }
+  /* Sort ascending scoreArr */
+  scoreArr.sort(function (a, b) {
+    return a - b;
+  });
+  return scoreArr;
+};
+
+/**
+ * Create a new highscore board
+ */
+const createScoreBoard = function () {
+  const score = getScore();
+  const scorePlayer1 = score[0];
+  const scorePlayer2 = score[1];
+  const scorePlayer3 = score[2];
+  const scorePlayer4 = score[3];
+  const scorePlayer5 = score[4];
+  const players = {
+    Player1: scorePlayer1,
+    Player2: scorePlayer2,
+    Player3: scorePlayer3,
+    Player4: scorePlayer4,
+    Player5: scorePlayer5,
+  };
+  console.log(players);
+  return players;
+};
+
+/**
  * Control button
  */
 function control(e) {
@@ -97,24 +152,45 @@ const replay = function () {
   replayBox.classList.add("hidden");
   /** Reset score to 0 */
   scoreValue = 0;
-  /** Restart game */
-  startGame();
 };
 
 /**
  * Choose level function
  */
 const chooseLevel = function () {
+  // let checkClick = false;
+
   easyLv.addEventListener("click", function () {
     timeLevel = intervalTime[2];
+    /** Change easy title **/
+    easyTitle.style.transition = "all 0.5s";
+    easyTitle.style.color = "rgba(216, 199, 0, 255)";
+    /** Remains medium title **/
+    mediumTitle.style.color = "rgba(43, 110, 161, 255)";
+    /** Remains hard title **/
+    hardTitle.style.color = "rgba(43, 110, 161, 255)";
   });
 
   mediumLv.addEventListener("click", function () {
     timeLevel = intervalTime[1];
+    /** Remains easy title **/
+    easyTitle.style.color = "rgba(43, 110, 161, 255)";
+    /** Change medium title **/
+    mediumTitle.style.transition = "all 0.5s";
+    mediumTitle.style.color = "rgba(216, 199, 0, 255)";
+    /** Remains hard title **/
+    hardTitle.style.color = "rgba(43, 110, 161, 255)";
   });
 
   hardLv.addEventListener("click", function () {
     timeLevel = intervalTime[0];
+    /** Remain easy title **/
+    easyTitle.style.color = "rgba(43, 110, 161, 255)";
+    /** Remains medium title **/
+    mediumTitle.style.color = "rgba(43, 110, 161, 255)";
+    /** Change hard title **/
+    hardTitle.style.transition = "all 0.5s";
+    hardTitle.style.color = "rgba(216, 199, 0, 255)";
   });
 };
 
@@ -126,6 +202,11 @@ const backTo = function () {
   selectLevelsMenu.classList.toggle("hidden");
 };
 
+const backHighscoreTo = function () {
+  gameMenu.classList.toggle("hidden");
+  highScoreBoard.classList.toggle("hidden");
+};
+
 /**
  * Start game
  */
@@ -134,6 +215,8 @@ const startGame = function () {
    * Define start score value
    */
   let scoreValue = 0;
+  saveToStorage("score", scoreValue);
+
   /**
    * Check for hits
    */
@@ -156,12 +239,13 @@ const startGame = function () {
    */
   function eatApple(squares, tail) {
     if (squares[currentSnake[0]].hasChildNodes()) {
-      console.log(squares[currentSnake[0]]);
       squares[currentSnake[0]].removeChild(bananaSvg);
       squares[tail].classList.add("snake");
       currentSnake.push(tail);
       randomBanana(squares);
       scoreValue++;
+      /** Save score to storage */
+      saveToStorage("score", scoreValue);
       score.textContent = scoreValue;
     }
   }
@@ -213,6 +297,7 @@ const startGame = function () {
     let squares = document.querySelectorAll(".gameBox div");
     if (checkForHits(squares)) {
       showReplayBox();
+      createScoreBoard();
       return clearInterval(interval);
     } else {
       moveSnake(squares);
@@ -229,6 +314,10 @@ const startGame = function () {
   interval = setInterval(moveOutcome, timeLevel);
 };
 
+/**
+ *
+ */
+
 /**______ Events ______**/
 
 /**________ Levels event ________**/
@@ -238,9 +327,19 @@ levelsBtn.addEventListener("click", function () {
   chooseLevel();
 });
 
+/**________ Highscore event ________**/
+highScoreBtn.addEventListener("click", function () {
+  gameMenu.classList.toggle("hidden");
+  highScoreBoard.classList.toggle("hidden");
+});
+
 /**________ Back to home event ________**/
 backBtn.addEventListener("click", function () {
   backTo();
+});
+
+backBtnHighscore.addEventListener("click", function () {
+  backHighscoreTo();
 });
 
 /**________ Exit event ________**/
@@ -261,6 +360,7 @@ exitBtn.addEventListener("click", function () {
 /**________ Replay event ________**/
 replayBtn.addEventListener("click", function () {
   replay();
+  startGame();
 });
 
 /**________ Start event ________**/
