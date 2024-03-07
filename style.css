@@ -105,7 +105,7 @@ body {
 
 /**__________ Easy level __________**/
 .easy-level {
-  margin-top: 1.5rem;
+  margin-top: 3rem;
   width: 5rem;
   height: 2rem;
 }
@@ -122,6 +122,180 @@ body {
   margin-top: 1.5rem;
   width: 9rem;
   height: 2rem;
+}
+
+/**________ Highscore board ________**/
+.highscore-board {
+  width: 320px;
+  height: 320px;
+  border-radius: 0.5rem;
+  background-color: rgba(39, 55, 69, 255);
+  z-index: 1;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/**________ Highscore container ________**/
+.highscore-container {
+  display: flex;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
+/**________ Highscore container title ________**/
+.highscore-title-container {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 35px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.top-board-highscore {
+  position: absolute;
+  display: inline-block;
+  top: 8%;
+  left: 0;
+  width: 0px;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    transparent 50%,
+    rgba(216, 198, 0, 0.99),
+    rgb(216, 198, 0)
+  );
+}
+
+.bottom-board-highscore {
+  position: absolute;
+  display: inline-block;
+  bottom: 10%;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    rgba(216, 198, 0, 0.99),
+    rgb(216, 198, 0),
+    transparent 50%
+  );
+}
+
+.right-board-highscore {
+  position: absolute;
+  display: inline-block;
+  top: -2%;
+  right: 0;
+  width: 5px;
+  height: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    rgba(216, 198, 0, 0.99),
+    rgb(216, 198, 0)
+  );
+}
+
+.left-board-highscore {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  bottom: -10%;
+  width: 5px;
+  height: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(216, 198, 0, 0.99),
+    rgb(216, 198, 0),
+    transparent 70%
+  );
+}
+
+.top-board-highscore {
+  animation: animateTop 4s ease-in-out infinite;
+}
+
+.right-board-highscore {
+  animation: animateRight 4s ease-in-out infinite;
+}
+
+.left-board-highscore {
+  animation: animateLeft 4s ease-in-out infinite;
+}
+
+.bottom-board-highscore {
+  animation: animateBottom 4s ease-in-out infinite;
+}
+
+@keyframes animateRight {
+  0%,
+  25% {
+    height: 0;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+    height: 92%;
+  }
+
+  55%,
+  100% {
+    height: 75%;
+    opacity: 0;
+  }
+}
+
+@keyframes animateBottom {
+  0%,
+  50% {
+    opacity: 0;
+    width: 0;
+  }
+
+  75% {
+    opacity: 1;
+    width: 97%;
+  }
+
+  76%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateTop {
+  25% {
+    width: 100%;
+    opacity: 1;
+  }
+
+  30%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateLeft {
+  0%,
+  75% {
+    height: 0;
+    opacity: 0;
+    bottom: 0;
+  }
+
+  100% {
+    opacity: 1;
+    height: 100%;
+  }
+}
+
+/**________ Top rank column ________**/
+.top-rank {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /**__________ Box banana __________**/
@@ -171,6 +345,8 @@ body {
   font-size: 1.25rem;
   color: rgba(43, 110, 161, 255);
   font-weight: 1000;
+  position: absolute;
+  bottom: 110%;
 }
 
 .easy-title {
@@ -212,6 +388,29 @@ body {
   cursor: pointer;
 }
 
+/**__________ Highscore title __________**/
+.highscore-title {
+  position: absolute;
+  bottom: 95%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: 5px;
+  color: rgba(43, 110, 161, 255);
+  font-size: 1.25rem;
+}
+
+/**__________ Player title __________**/
+.player-title {
+  font-size: 1rem;
+  font-weight: 1000;
+}
+
+/**__________ Score title __________**/
+.score-title {
+  font-size: 1rem;
+  font-weight: 1000;
+}
+
 /**______ Features ______**/
 /**________ Score ________**/
 .scoreDisplay {
@@ -230,6 +429,67 @@ body {
   font-size: 3.5rem;
   font-family: "DotGothic16", sans-serif;
   letter-spacing: 0.5rem;
+}
+
+/**________ Player column ________**/
+.players-col {
+  margin-left: 115px;
+}
+
+/**________ Score column ________**/
+.scores-col {
+  margin-left: 45px;
+}
+
+/**________ Text in highscores ________**/
+.text-highscores-decor {
+  font-weight: 1000;
+  font-size: 1rem;
+  color: rgba(43, 110, 161, 255);
+}
+
+.txt-feature-decor {
+  color: rgba(216, 199, 0, 255);
+}
+
+/**________ Top 2 align ________**/
+.top-2-align {
+  margin-top: 20px;
+}
+
+/**________ Top 3 align ________**/
+.top-3-align {
+  margin-top: 22px;
+}
+
+/**________ Top 4 align ________**/
+.top-4-align {
+  margin-top: 17px;
+}
+
+/**________ Top 5 align ________**/
+.top-5-align {
+  margin-top: 20px;
+}
+
+/**________ Score 2 align ________**/
+.score-2-align {
+  margin-top: 20px;
+}
+
+/**________ Score 3 align ________**/
+.score-3-align {
+  margin-top: 22px;
+}
+
+/**________ Score 4 align ________**/
+.score-4-align {
+  margin-top: 17px;
+}
+
+/**________ Score 5 align ________**/
+.score-5-align {
+  margin-top: 20px;
 }
 
 /**________ Control button ________**/
@@ -328,6 +588,21 @@ body {
   fill: rgba(67, 110, 142, 255);
   background-color: rgba(39, 55, 69, 255);
   cursor: pointer;
+  z-index: 1;
+}
+
+.back-btn-highscores {
+  position: relative;
+  display: block;
+  background: none;
+  border: none;
+  top: -10%;
+  left: -9%;
+  rotate: 180deg;
+  fill: rgba(67, 110, 142, 255);
+  background-color: rgba(39, 55, 69, 255);
+  cursor: pointer;
+  z-index: 1;
 }
 
 /**________ Banana level ________**/
