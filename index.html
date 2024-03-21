@@ -14,7 +14,9 @@
     <title>Game JavaScript</title>
   </head>
   <body>
+    <!-- /*______ Main box ______*/ -->
     <div class="mainBox">
+      <!-- /**______ Replay box ______**/ -->
       <div class="replay-box hidden">
         <p class="replay-title">Ouch! Watch out</p>
         <div class="replay-btn-box">
@@ -23,6 +25,7 @@
         </div>
       </div>
 
+      <!-- /**______ Select levels menu ______**/ -->
       <div class="select-levels-menu hidden">
         <button class="back-btn">
           <img src="arrow.svg" alt="Back Button" />
@@ -52,6 +55,19 @@
         </div>
       </div>
 
+      <!-- /*______ Highscore board menu ______*/ 
+        /*______ Username form ______*/ -->
+      <form
+        class="user-name-form hidden"
+        action="/action_page.php"
+        method="post"
+      >
+        <div class="user-name-container">
+          <p class="congrats-top-1">Well done! Top 1 score is</p>
+          <p class="max-score"></p>
+        </div>
+      </form>
+
       <div class="highscore-board hidden">
         <span class="top-board-highscore"></span>
         <span class="right-board-highscore"></span>
@@ -63,7 +79,7 @@
         <h3 class="highscore-title">Highscores</h3>
         <div class="highscore-title-container">
           <div class="score-title text-highscores-decor">Score</div>
-          <div class="player-title text-highscores-decor">Player</div>
+          <!-- <div class="player-title text-highscores-decor">Player</div> -->
         </div>
         <div class="highscore-container">
           <div class="top-rank">
@@ -74,38 +90,44 @@
             <p class="text-highscores-decor">Top 5</p>
           </div>
 
-          <div class="players-col">
+          <!-- <div class="players-col">
             <p class="txt-feature-decor">Player 1</p>
             <p class="top-2-align txt-feature-decor">Player 2</p>
             <p class="top-3-align txt-feature-decor">Player 3</p>
             <p class="top-4-align txt-feature-decor">Player 4</p>
             <p class="top-5-align txt-feature-decor">Player 5</p>
-          </div>
+          </div> -->
           <div class="scores-col">
-            <p class="txt-feature-decor">1</p>
-            <p class="score-2-align txt-feature-decor">2</p>
-            <p class="score-3-align txt-feature-decor">3</p>
-            <p class="score-4-align txt-feature-decor">4</p>
-            <p class="score-5-align txt-feature-decor">5</p>
+            <p class="score-top-1 score-1-align txt-feature-decor"></p>
+            <p class="score-top-2 score-2-align txt-feature-decor"></p>
+            <p class="score-top-3 score-3-align txt-feature-decor"></p>
+            <p class="score-top-4 score-4-align txt-feature-decor"></p>
+            <p class="score-top-5 score-5-align txt-feature-decor"></p>
           </div>
         </div>
       </div>
 
+      <!-- /**______ Game title ______**/ -->
       <div class="header">Snake Game</div>
 
+      <!-- /**______ Game box ______**/ -->
       <div class="gameBox">
         <div class="menu">
           <img class="banana-svg hidden" src="banana.svg" />
+          <!-- /**______ Main menu ______**/ -->
           <button class="start-btn">Start</button>
           <button class="levels-btn">Levels</button>
           <button class="highScores-btn">Highscores</button>
         </div>
       </div>
 
+      <!-- /**______ Features ______**/ -->
       <div class="featuresBox">
+        <!-- /**______ Score display ______**/ -->
         <div class="scoreDisplay">Score Display</div>
         <div class="score">0</div>
 
+        <!-- /**______ Control buttons ______**/ -->
         <div class="controlKeyboard">
           <div class="top">
             <img src="arrow.svg" class="top-btn" alt="Top Button" />
