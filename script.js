@@ -15,14 +15,22 @@ const easyLv = document.querySelector(".easy-level");
 const mediumLv = document.querySelector(".medium-level");
 const hardLv = document.querySelector(".hard-level");
 const score = document.querySelector(".score");
+const scoreTop1 = document.querySelector(".score-top-1");
+const scoreTop2 = document.querySelector(".score-top-2");
+const scoreTop3 = document.querySelector(".score-top-3");
+const scoreTop4 = document.querySelector(".score-top-4");
+const scoreTop5 = document.querySelector(".score-top-5");
 const bananaSvg = document.querySelector(".banana-svg");
 const replayBox = document.querySelector(".replay-box");
 const replayBtn = document.querySelector(".replay-btn");
 const exitBtn = document.querySelector(".exit-btn");
+const userNameForm = document.querySelector(".user-name-form");
+const maxScoreValue = document.querySelector(".max-score");
 const leftBtn = document.querySelector(".left");
 const rightBtn = document.querySelector(".right");
 const topBtn = document.querySelector(".top");
 const bottomBtn = document.querySelector(".bottom");
+let scoreValue;
 let scoreArr = [];
 let direction = 1;
 let timeLevel = 1000;
@@ -80,23 +88,33 @@ const removeBoard = function () {
  */
 const getScore = function () {
   const newScore = getFromStorage("score") || [];
-  scoreArr.push(newScore);
-  /* If length of scoreArr is greater than 5, set the length to 5 to make the list 5 score */
-  if (scoreArr.length > 5) {
+  if (newScore > 0) {
+    /* Sort ascending scoreArr */
+    scoreArr.push(Number(newScore));
+    scoreArr.sort(function (a, b) {
+      return b - a;
+    });
     /* Loop through scoreArr and compare newScore with the score in scoreArr, if newScore is greater than the score then replace it */
-    for (i in scoreArr) {
-      if (newScore > scoreArr[i]) {
-        scoreArr.splice(i, 1, newScore);
+    if (scoreArr.length > 5) {
+      /* If length of scoreArr is greater than 5, set the length to 5 to make the list 5 score */
+      scoreArr.length = 5;
+      console.log(scoreArr);
+      for (i in scoreArr) {
+        if (newScore > scoreArr[i]) {
+          scoreArr.splice(i, 1, newScore);
+        } else if (newScore < scoreArr[i]) {
+          scoreArr.splice(5, 1);
+        }
+        /* Break the loop when meets the condition */
+        break;
       }
-      /* Break the loop when meets the condition */
-      break;
     }
-    scoreArr.length = 5;
+    let maxScore = Math.max(...scoreArr);
+    maxScoreValue.textContent = maxScore;
+    if (newScore == maxScore) {
+      renderLoginForm();
+    }
   }
-  /* Sort ascending scoreArr */
-  scoreArr.sort(function (a, b) {
-    return a - b;
-  });
   return scoreArr;
 };
 
@@ -110,12 +128,17 @@ const createScoreBoard = function () {
   const scorePlayer3 = score[2];
   const scorePlayer4 = score[3];
   const scorePlayer5 = score[4];
+  scoreTop1.textContent = scorePlayer1;
+  scoreTop2.textContent = scorePlayer2;
+  scoreTop3.textContent = scorePlayer3;
+  scoreTop4.textContent = scorePlayer4;
+  scoreTop5.textContent = scorePlayer5;
   const players = {
-    Player1: scorePlayer1,
-    Player2: scorePlayer2,
-    Player3: scorePlayer3,
-    Player4: scorePlayer4,
-    Player5: scorePlayer5,
+    Alex: scorePlayer1,
+    Ben: scorePlayer2,
+    Caddy: scorePlayer3,
+    Dean: scorePlayer4,
+    Edward: scorePlayer5,
   };
   console.log(players);
   return players;
@@ -150,6 +173,8 @@ function control(e) {
 const replay = function () {
   /** Hide replay box */
   replayBox.classList.add("hidden");
+  /** Hide username form */
+  userNameForm.classList.add("hidden");
   /** Reset score to 0 */
   scoreValue = 0;
 };
@@ -158,8 +183,6 @@ const replay = function () {
  * Choose level function
  */
 const chooseLevel = function () {
-  // let checkClick = false;
-
   easyLv.addEventListener("click", function () {
     timeLevel = intervalTime[2];
     /** Change easy title **/
@@ -208,13 +231,20 @@ const backHighscoreTo = function () {
 };
 
 /**
+ * Render login form function
+ */
+const renderLoginForm = function () {
+  userNameForm.classList.toggle("hidden");
+};
+
+/**
  * Start game
  */
 const startGame = function () {
   /**
    * Define start score value
    */
-  let scoreValue = 0;
+  scoreValue = 0;
   saveToStorage("score", scoreValue);
 
   /**
@@ -355,6 +385,8 @@ exitBtn.addEventListener("click", function () {
   gameBox.appendChild(gameMenu);
   /** Set score to 0 */
   score.textContent = 0;
+  /** Remove top 1 score pop up */
+  userNameForm.classList.add("hidden");
 });
 
 /**________ Replay event ________**/
