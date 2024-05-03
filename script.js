@@ -149,18 +149,18 @@ const createScoreBoard = function () {
  */
 function control(e) {
   /* Move the head of snake to right */
-  if (e.keyCode === 39) {
+  if (e.keyCode === 68) {
     rightBtn.animate(movingRightBtn, movingTimingBtn);
     direction = 1;
-  } else if (e.keyCode === 38) {
+  } else if (e.keyCode === 87) {
     /* Move the head of snake ten divs up */
     topBtn.animate(movingTopBtn, movingTimingBtn);
     direction = -width;
-  } else if (e.keyCode === 37) {
+  } else if (e.keyCode === 65) {
     /* Move the head of snake to left */
     leftBtn.animate(movingLeftBtn, movingTimingBtn);
     direction = -1;
-  } else if (e.keyCode === 40) {
+  } else if (e.keyCode === 83) {
     /* Move the head of snake down ten divs */
     bottomBtn.animate(movingDownBtn, movingTimingBtn);
     direction = +width;
